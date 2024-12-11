@@ -14,7 +14,7 @@ function Header() {
             <div className="flex justify-between items-center">
                
                  <div className="text-center text-4xl cursor-pointer">
-                    <Link to="/" className="text-indigo-800  hover:text-indigo-400">DogZ</Link>
+                    <Link to="/" className="text-indigo-800  hover:text-indigo-400">Kitty</Link>
                 </div>
                 
                 <div className="flex items-center space-x-4">

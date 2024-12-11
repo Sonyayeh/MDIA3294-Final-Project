@@ -14,7 +14,7 @@ function Footer () {
                     <Link className="" to="/" onClick={handleClick}>Kittyyyyyy</Link> 
                 </div>
                 <p className="text-teal-500 text-sm">
-                copy; 2024 DogZ Updates. All rights reserved. 
+                copy 2024 Cat Shop Updates. All rights reserved. 
                 </p>
                 <IonIcon className="text-teal-500 text-2xl" name="logo-facebook" />
                 <IonIcon className="text-teal-500 text-2xl" name="logo-instagram" />
