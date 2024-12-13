@@ -6,6 +6,7 @@ import Layout from "./Components/Layout";
 import Home from "./pages/Home";
 import List from "./pages/List";
 import Cat from "./pages/Cat";
+import Fav from "./pages/Fav";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Home />}/>
           <Route path="/Search" element={<List />}/>
           <Route path="/:name" element={<Cat />}/>
+          <Route path="/Fav" element={<Fav />}/>
           </Route>
         </Routes>
       </BrowserRouter>
