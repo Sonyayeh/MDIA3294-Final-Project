@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 
+
+// this is the single cat page
 function Cat() {
     const [cat, setCats] = useState([])
     const {name} =useParams()
 
+    // when clicked on the more info button from the cat list page, this page will fetch the selected cat's image and load it in the single cat page, which is here. 
     useEffect(() => {
         const fetchCatData = async () => {
             try {
@@ -12,6 +15,7 @@ function Cat() {
                     `https://api.thecatapi.com/v1/breeds/search?q=${name}`
                 )
 
+                // if the data does not exist, it will return an error in the console
                 const data = await res.json()
                 setCats(data)
                 console.log(data)
@@ -25,8 +29,11 @@ function Cat() {
 
     return (
         <>
+            {/* this is to return the specific cat data based on what cat you choose */}
             <section className=" bg-orange-300 mx-auto flex items-center justify-center h-screen">
                 {cat.map((cat) => (
+
+                    // this big section is basically calling for the cat data based on which ca you clicked on. I included the name, health issues, energy level, description, adaptability and its shedding amount
                     <div
                     key={cat.id}
                     className="grid grid-cols-1 gap-8 p-8 md:grid-cols-2 md:place-items-center">
@@ -63,6 +70,9 @@ function Cat() {
                                     {cat.shedding_level}
                                 </li>
                             </ul>
+                            {/* this is the button that makes you go back to the adoption list 
+                            I also made the button different color when hovered just so you know you're hovering the button
+                            */}
                                 <Link
                                 to="/Search"
                                 className="text-green-200 bg-orange-500 rounded-md py-2 px-4 hover:bg-green-200 hover:text-orange-500

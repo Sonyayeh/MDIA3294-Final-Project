@@ -12,3 +12,5 @@ function Home () {
 }
 
 export default Home;
+
+// I am basically importing th ebanner and the content from components, it is placed accordingly to how I want the elements be placed

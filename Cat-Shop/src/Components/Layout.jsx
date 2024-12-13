@@ -17,3 +17,5 @@ function Layout() {
 }
 
 export default Layout;
+
+// this page is to add the style of the page. The header is on the top and footer is at the bottom. this is to ensure that the content of header and footer remain the same, so is the position.

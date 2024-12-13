@@ -14,3 +14,5 @@ function Banner () {
 }
 
 export default Banner;
+
+// this is the banner image at the top, I only added because I thought it looks empty without a banner image

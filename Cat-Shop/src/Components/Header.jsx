@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Use Link for navigation
+// this section is the same as footer, please check there for the same comments
+import { Link } from "react-router-dom";
 import IonIcon from "@reacticons/ionicons";
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    // this is the hamburger menu section, it can be toggled open and close when clicked
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -13,6 +15,7 @@ function Header() {
         <nav className="font-bold p-4">
             <div className="flex justify-between items-center">
                
+               {/* this is the same as the footer shelter name section */}
                  <div className="text-center text-4xl cursor-pointer pl-3">
                     <Link to="/" className=" 
                     text-orange-800  hover:text-orange-400
@@ -20,8 +23,8 @@ function Header() {
                     ">Kit Cat Shelter</Link>
                 </div>
                 
+                {/* this is the section where I set the open menu toggle */}
                 <div className="flex items-center space-x-4">
-                   
                     <div className="md:hidden text-orange-800" onClick={toggleMenu}>
                         <IonIcon
                             name={isMenuOpen ? "close-outline" :"menu-outline"}
@@ -29,6 +32,7 @@ function Header() {
                         />
                     </div>
                     <ul
+    // this is where the hamburger menu toggle section, when opened, it will show the links to other pages, each button will have a hover effect with a rounded edge style. 
     className={`${
         isMenuOpen ? "block" : "hidden"
     } absolute md:static top-16 right-0 w-full md:w-auto text-center bg-white shadow-md md:shadow-none md:flex space-x-0 md:space-x-0 md:p-0`}
