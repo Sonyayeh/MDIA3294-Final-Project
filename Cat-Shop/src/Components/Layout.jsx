@@ -9,8 +9,9 @@ function Layout() {
         <section>
             <Header />
             <main>
-            <Footer />
+            <Outlet />
             </main>
+            <Footer />
         </section>
     );
 }
