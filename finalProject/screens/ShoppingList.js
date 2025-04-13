@@ -9,13 +9,33 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function ShoppingList() {
   const [items, setItems] = useState([]);
   const navigation = useNavigation();
+  const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      loadCartCount(); // reload cart count when screen is focused
+    });
+  
     fetch('http://10.0.2.2:3000/items')
       .then(response => response.json())
       .then(data => setItems(data))
       .catch(error => console.error('Error fetching items:', error));
-  }, []);
+  
+    loadCartCount(); // initial load
+  
+    return unsubscribe; // clean up the listener
+  }, [navigation]);
+
+  const loadCartCount = async () => {
+    try {
+      const cartItems = await AsyncStorage.getItem('cart');
+      const parsedCart = cartItems ? JSON.parse(cartItems) : [];
+      setCartCount(parsedCart.length);
+    } catch (error) {
+      console.error('Error loading cart count:', error);
+    }
+  };
+  
 
   const addToCart = async (item) => {
     try {
@@ -23,12 +43,12 @@ export default function ShoppingList() {
       const parsedCart = cartItems ? JSON.parse(cartItems) : [];
       const updatedCart = [...parsedCart, item];
       await AsyncStorage.setItem('cart', JSON.stringify(updatedCart));
+      setCartCount(updatedCart.length); // ✅ update count
       console.log(`Added to cart: ${item.name}`);
-  
-      // Show an alert confirmation
+      
       Alert.alert(
-        "Item Added", 
-        `${item.name} has been added to your cart.`, 
+        "Item Added",
+        `${item.name} has been added to your cart.`,
         [{ text: "OK" }],
         { cancelable: false }
       );
@@ -36,7 +56,7 @@ export default function ShoppingList() {
       console.error('Error adding to cart:', error);
     }
   };
-
+  
   return (
     <View style={styles.container}>
       {/* Navigation Bar */}
@@ -47,9 +67,16 @@ export default function ShoppingList() {
 
           <Text style={styles.navTitle}>Shopping List</Text>
 
-        <TouchableOpacity onPress={() => navigation.navigate('ShoppingSaved')}>
-          <Ionicons name="cart" size={24} color="#ffffff" />
-        </TouchableOpacity>
+          <View>
+            <TouchableOpacity onPress={() => navigation.navigate('ShoppingSaved')}>
+              <Ionicons name="cart" size={24} color="#ffffff" />
+              {cartCount > 0 && (
+                <View style={styles.cartBadge}>
+                  <Text style={styles.badgeText}>{cartCount}</Text>
+                </View>
+              )}
+            </TouchableOpacity>
+          </View>
       </View>
 
 
@@ -155,4 +182,22 @@ const styles = StyleSheet.create({
   icon: {
     marginHorizontal: 10,
   },
+  cartBadge: {
+    position: 'absolute',
+    right: -6,
+    top: -6,
+    backgroundColor: '#ff4d4d',
+    borderRadius: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 1,
+    minWidth: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  
 });
