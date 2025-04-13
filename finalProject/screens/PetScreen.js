@@ -9,13 +9,27 @@ export default function PetScreen({ navigation }) {
         Adoptly
       </Text>
 
-      <View style={styles.bannerTops}>
+      {/* <TouchableOpacity
+        style={styles.bannerTops}>
+        onPress={() => navigation.navigate('ShoppingList')} >
+
+      <Text h2>Essentials</Text>
+        <Image
+          style={styles.banner}
+          source={require('../assets/dog-1.png')}
+          />
+      </TouchableOpacity> */}
+
+      <TouchableOpacity
+        style={styles.bannerTops}
+        onPress={() => navigation.navigate('ShoppingList')}
+      >
         <Image
           style={styles.banner}
           source={require('../assets/dog-1.png')}
         />
-        <Text h2>About Us:</Text>
-      </View>
+        <Text h2>Essentials</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.bannerMiddle}
