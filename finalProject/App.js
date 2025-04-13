@@ -19,9 +19,11 @@ import DogSearchScreen from "./screens/DogSearchScreen";
 import CatDetailScreen from "./screens/CatDetailScreen";
 import Adoption from "./screens/Adoption";
 import PetScreen from "./screens/PetScreen";
+import ShoppingList from "./screens/ShoppingList";
 
 // Context provider
 import { AdoptionProvider } from './components/AdoptionContext';
+import ShoppingSaved from "./screens/ShoppingSaved";
 
 const RootStack = createNativeStackNavigator();
 
@@ -49,6 +51,8 @@ export default function App() {
               <RootStack.Screen name="UserNav" component={UsersNavigation} options={{ title: 'User Section' }}  />
               {/* PetNavigator for pet-related screens */}
               <RootStack.Screen name="PetNavigator" component={PetNavigator} />
+              <RootStack.Screen name="ShoppingList" component={ShoppingList} />
+              <RootStack.Screen name="ShoppingSaved" component={ShoppingSaved} />
             </RootStack.Navigator>
           </ThemeProvider>
         </NavigationContainer>
